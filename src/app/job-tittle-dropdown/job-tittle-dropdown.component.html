@@ -1,0 +1,5 @@
+<div [formGroup]="parentForm">
+    <select  class="form-control" formControlName="jobTittle" placeholder="jobTittle">
+        <option *ngFor="let job of jobsArray" > {{job}}</option>  
+    </select>
+</div>

@@ -1,0 +1,53 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col" >
+      <label>name:</label>
+      <input type="text" class="form-control" formControlName="name" placeholder="name"/>
+    </div>
+    <div class="col">
+      <label>area:</label><br>
+      <input formControlName="area" type="radio" value="services"> services
+      <input formControlName="area" type="radio" value="kitchen"> kitchen       
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label>Dob:</label>
+      <input type="date" class="form-control" formControlName="Dob" placeholder="Dob"/>
+    </div>
+    <div class="col">
+      <label>Job tittle:</label>
+      <app-job-tittle-dropdown [parentForm]="employeeForm"></app-job-tittle-dropdown>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label>Country:</label>
+      <select  formControlName="country" placeholder="jobTittle" class="form-control">
+          <option *ngFor="let country of countries" > {{country}}</option>  
+      </select>
+    </div>
+    <div class="col">
+      <label>userName:</label>
+      <input type="text" class="form-control" formControlName="userName" placeholder="userName" /> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label>hired date:</label>
+      <input type="date" class="form-control" formControlName="hireDate" placeholder="date"/>
+    </div>
+    <div class="col" [hidden]="(employeeForm.value.jobTittle!='Waitress' &&
+                  employeeForm.value.jobTittle!='Dining room manager')">
+      <label>Tip rate:</label>
+      <input type="text" class="form-control" formControlName="tipRate" placeholder="tipRate"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>status:</label>
+    <input formControlName="status"  type="checkbox">
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!employeeForm.valid">Guardar</button>
+</form>
+
+<a class="btn btn-danger" routerLink="/employees">Volver</a>

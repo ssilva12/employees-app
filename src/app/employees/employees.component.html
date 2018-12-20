@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-4">
+      <label>Buscar:</label>
+      <input type="text" class="form-control"  [(ngModel)]="search" (change)="searchEmployees()" 
+       placeholder="search by name / press enter"/>
+  </div>
+</div>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>User name</th>
+      <th>Hire Date</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{employee.name}}</td>
+      <td>{{getAge(employee.Dob)}}</td>
+      <td>{{employee.userName}}</td>
+      <td>{{employee.hireDate | date}}</td>
+      <td>
+        <a class="btn btn-primary" routerLink="/view/{{employee.userName}}">Ver</a>
+        <a class="btn btn-primary" routerLink="/edit/{{employee.userName}}">Editar</a>
+        <button class="btn btn-danger" (click)="deleteEmployee(employee)">borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a class="btn btn-primary" routerLink="/newemployee">nuevo</a>
